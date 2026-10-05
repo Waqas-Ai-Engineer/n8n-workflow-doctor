@@ -1,0 +1,9 @@
+[project]
+name = "n8n-workflow-doctor"
+version = "0.1.0"
+description = "Zero-dependency linter for n8n workflow JSON: secrets, missing retries, open webhooks, orphans."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+[project.scripts]
+n8n-doctor = "n8n_workflow_doctor.cli:main"
