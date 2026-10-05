@@ -1,0 +1,16 @@
+{
+  "name": "Lead intake (messy demo)",
+  "nodes": [
+    {"name": "Webhook", "type": "n8n-nodes-base.webhook", "parameters": {"path": "lead"}},
+    {"name": "HTTP Request", "type": "n8n-nodes-base.httpRequest",
+     "parameters": {"url": "https://api.example-crm.com/leads", "headerParameters": {"parameters": [{"name": "Authorization", "value": "Bearer abcdef1234567890abcdef1234"}]}}},
+    {"name": "Set", "type": "n8n-nodes-base.set", "parameters": {}},
+    {"name": "Old Slack", "type": "n8n-nodes-base.slack", "disabled": true, "parameters": {}},
+    {"name": "Floating note step", "type": "n8n-nodes-base.noOp", "parameters": {}}
+  ],
+  "connections": {
+    "Webhook": {"main": [[{"node": "HTTP Request", "type": "main", "index": 0}]]},
+    "HTTP Request": {"main": [[{"node": "Set", "type": "main", "index": 0}]]}
+  },
+  "settings": {}
+}

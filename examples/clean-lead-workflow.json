@@ -1,0 +1,13 @@
+{
+  "name": "Lead intake (clean demo)",
+  "nodes": [
+    {"name": "Receive lead", "type": "n8n-nodes-base.webhook", "parameters": {"path": "lead", "authentication": "headerAuth"}},
+    {"name": "Create CRM contact", "type": "n8n-nodes-base.httpRequest", "retryOnFail": true, "parameters": {"url": "https://api.example-crm.com/leads"}},
+    {"name": "Alert owner", "type": "n8n-nodes-base.slack", "parameters": {}}
+  ],
+  "connections": {
+    "Receive lead": {"main": [[{"node": "Create CRM contact", "type": "main", "index": 0}]]},
+    "Create CRM contact": {"main": [[{"node": "Alert owner", "type": "main", "index": 0}]]}
+  },
+  "settings": {"errorWorkflow": "abc123"}
+}
